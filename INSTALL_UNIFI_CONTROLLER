@@ -86,6 +86,8 @@ select yn in "Yes" "No"; do
 						reboot now;;
 					No)
 						break;;
+				esac
+			done
 			;;
 		No)
 			break;;
