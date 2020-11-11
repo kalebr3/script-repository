@@ -1,0 +1,93 @@
+#!/bin/bash
+
+clear
+
+echo "-------------------------------------"
+echo "|      SOFTWARE INSTALL SCRIPT      |"
+echo "| Ubiquiti UniFi Network Controller |"
+echo "|         November 11, 2020         |"
+echo "|           Kaleb Redman            |"
+echo "-------------------------------------"
+echo "| DEPENDENCIES AUTOINSTALLED:       |"
+echo "|     - binutils                    |"
+echo "|     - curl                        |"
+echo "|     - jsvc                        |"
+echo "|     - openjdk-8-jre-headless      |"
+echo "|     - openjdk-8-jdk-headless      |"
+echo "|     - mongodb-org-server-3.6.20   |"
+echo "-------------------------------------"
+
+echo "Are you sure you wish to install UniFi Network Controller and it's dependencies?"
+select yn in "Yes" "No"; do
+	case $yn in
+		Yes)
+			echo "*************************************************************"
+			echo " CREATING TEMPORARY DIRECTORY: /tmp/install_unifi_controller "
+			echo "*************************************************************"
+			mkdir /tmp/install_unifi_controller
+			cd /tmp/install_unifi_controller
+
+			echo "************************************************"
+			echo " DOWNLOADING DEPENDENCY: openjdk-8-jre-headless "
+			echo "************************************************"
+			wget http://security.debian.org/debian-security/pool/updates/main/o/openjdk-8/openjdk-8-jre-headless_8u272-b10-0+deb9u1_amd64.deb
+
+			echo "************************************************"
+			echo " DOWNLOADING DEPENDENCY: openjdk-8-jdk-headless "
+			echo "************************************************"
+			wget http://security.debian.org/debian-security/pool/updates/main/o/openjdk-8/openjdk-8-jdk-headless_8u272-b10-0+deb9u1_amd64.deb
+
+			echo "***************************************************"
+			echo " DOWNLOADING DEPENDENCY: mongodb-org-server-3.6.20 "
+			echo "***************************************************"
+			wget https://repo.mongodb.org/apt/debian/dists/stretch/mongodb-org/3.6/main/binary-amd64/mongodb-org-server_3.6.20_amd64.deb
+
+			echo "***************************************************"
+			echo " DOWNLOADING APPLICATION: UniFi Network Controller "
+			echo "***************************************************"
+			wget https://dl.ui.com/unifi/6.0.28/unifi_sysvinit_all.deb
+
+			echo "*******************************************************"
+			echo " INSTALLING DEPENDENCIES VIA APT: binutils, curl, jsvc "
+			echo "*******************************************************"
+			apt-get update
+			apt-get install -y binutils curl jsvc
+
+			echo "***********************************************"
+			echo " INSTALLING DEPENDENCY: openjdk-8-jre-headless "
+			echo "***********************************************"
+			dpkg -i openjdk-8-jre-headless_8u272-b10-0+deb9u1_amd64.deb
+
+			echo "***********************************************"
+			echo " INSTALLING DEPENDENCY: openjdk-8-jdk-headless "
+			echo "***********************************************"
+			dpkg -i openjdk-8-jdk-headless_8u272-b10-0+deb9u1_amd64.deb
+
+			echo "**************************************************"
+			echo " INSTALLING DEPENDENCY: mongodb-org-server-3.6.20 "
+			echo "**************************************************"
+			dpkg -i mongodb-org-server_3.6.20_amd64.deb
+
+			echo "**************************************************"
+			echo " INSTALLING APPLICATION: UniFi Network Controller "
+			echo "**************************************************"
+			dpkg -i unifi_sysvinit_all.deb
+
+			echo "*************************************************************"
+			echo " REMOVING TEMPORARY DIRECTORY: /tmp/install_unifi_controller "
+			echo "*************************************************************"
+			cd
+			rm -rf /tmp/install_unifi_controller
+
+			echo "Would you like to restart the server now?"
+			select yn in "Yes" "No"; do
+				case $yn in
+					Yes)
+						reboot now;;
+					No)
+						break;;
+			;;
+		No)
+			break;;
+	esac
+done
