@@ -89,12 +89,14 @@ select yn in "Yes" "No"; do
 			echo -e "\n***********************************"
 			echo -e " INSTALLING APPLICATION: IMAP Sync "
 			echo -e "***********************************\n"
-			chmod -x imapsync
 			mv imapsync /usr/bin/
+			chmod -x /usr/bin/imapsync
 
 			echo -e "\n***********************************************"
 			echo -e " SUCCESSFULLY INSTALLED APPLICATION: IMAP Sync "
 			echo -e "***********************************************\n"
+
+			break
 			;;
         No)
 			break;;
