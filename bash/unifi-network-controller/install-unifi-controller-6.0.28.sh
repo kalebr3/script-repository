@@ -25,8 +25,12 @@ then
 	echo -e "\n*************************************************************"
 	echo -e " CREATING TEMPORARY DIRECTORY: /tmp/install_unifi_controller "
 	echo -e "*************************************************************\n"
-	mkdir /tmp/install_unifi_controller
-	cd /tmp/install_unifi_controller
+	TEMPDIR=/tmp/install_unifi_controller
+	if [[ ! -d '$TEMPDIR' ]]
+	then
+		mkdir '$TEMPDIR'
+	fi
+	cd '$TEMPDIR'
 
 	echo -e "\n************************************************"
 	echo -e " DOWNLOADING DEPENDENCY: openjdk-8-jre-headless "
