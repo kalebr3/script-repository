@@ -85,7 +85,8 @@ then
 	echo -e "\n************************************"
 	echo -e " DOWNLOADING APPLICATION: IMAP Sync "
 	echo -e "************************************\n"
-	wget https://raw.githubusercontent.com/imapsync/imapsync/master/imapsync
+	wget --quiet --show-progress \
+		https://raw.githubusercontent.com/imapsync/imapsync/master/imapsync
 
 	echo -e "\n***********************************"
 	echo -e " INSTALLING APPLICATION: IMAP Sync "

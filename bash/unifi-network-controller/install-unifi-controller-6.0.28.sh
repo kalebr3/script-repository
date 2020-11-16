@@ -31,22 +31,26 @@ then
 	echo -e "\n************************************************"
 	echo -e " DOWNLOADING DEPENDENCY: openjdk-8-jre-headless "
 	echo -e "************************************************\n"
-	wget http://security.debian.org/debian-security/pool/updates/main/o/openjdk-8/openjdk-8-jre-headless_8u272-b10-0+deb9u1_amd64.deb
+	wget --quiet --show-progress \
+		http://security.debian.org/debian-security/pool/updates/main/o/openjdk-8/openjdk-8-jre-headless_8u272-b10-0+deb9u1_amd64.deb
 
 	echo -e "\n************************************************"
 	echo -e " DOWNLOADING DEPENDENCY: openjdk-8-jdk-headless "
 	echo -e "************************************************\n"
-	wget http://security.debian.org/debian-security/pool/updates/main/o/openjdk-8/openjdk-8-jdk-headless_8u272-b10-0+deb9u1_amd64.deb
+	wget --quiet --show-progress \
+		http://security.debian.org/debian-security/pool/updates/main/o/openjdk-8/openjdk-8-jdk-headless_8u272-b10-0+deb9u1_amd64.deb
 
 	echo -e "\n***************************************************"
 	echo -e " DOWNLOADING DEPENDENCY: mongodb-org-server-3.6.20 "
 	echo -e "***************************************************\n"
-	wget https://repo.mongodb.org/apt/debian/dists/stretch/mongodb-org/3.6/main/binary-amd64/mongodb-org-server_3.6.20_amd64.deb
+	wget --quiet --show-progress \
+		https://repo.mongodb.org/apt/debian/dists/stretch/mongodb-org/3.6/main/binary-amd64/mongodb-org-server_3.6.20_amd64.deb
 
 	echo -e "\n***************************************************"
 	echo -e " DOWNLOADING APPLICATION: UniFi Network Controller "
 	echo -e "***************************************************\n"
-	wget https://dl.ui.com/unifi/6.0.28/unifi_sysvinit_all.deb
+	wget --quiet --show-progress \
+		https://dl.ui.com/unifi/6.0.28/unifi_sysvinit_all.deb
 
 	echo -e "\n*******************************************************"
 	echo -e " INSTALLING DEPENDENCIES VIA APT: binutils, curl, jsvc "
